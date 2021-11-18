@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'amigosProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd97b4p2juoa841',
+        'USER': 'ttbznofiqrvayx',
+        'PASSWORD': 'abbec13db51efd9031663b9ff66afb584bf8defd3dc159bb363e7f5932e71d6a',
+        'HOST': 'ec2-52-45-73-150.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
