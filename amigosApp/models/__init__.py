@@ -1,2 +1,2 @@
-from user import User
-from amigos import Amigos
+from .user import User
+from .amigos import Amigos

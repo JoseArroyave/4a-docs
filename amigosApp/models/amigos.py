@@ -10,7 +10,5 @@ class Amigos(models.Model):
     telefono = models.BigIntegerField(null=True, blank=True)
     user = models.ForeignKey(User,related_name='user_amigo', on_delete=models.CASCADE)
 
-   
-
     def __str__(self):
         return f'[nombre:{self.nombre}, apellidos:{self.apellidos}]'
