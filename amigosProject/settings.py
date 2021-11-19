@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'amigosApp',
+    'authApp',
 ]
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
@@ -69,7 +70,7 @@ REST_FRAMEWORK = {
     )
 }
 
-AUTH_USER_MODEL = 'amigosApp.User'
+AUTH_USER_MODEL = 'authApp.User'
 
 ROOT_URLCONF = 'amigosProject.urls'
 

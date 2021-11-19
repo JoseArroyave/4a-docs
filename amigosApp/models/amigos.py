@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.fields import AutoField
-from amigosApp.models import User
+from authApp.models.user import User
 
 class Amigos(models.Model):
     id = models.BigIntegerField(primary_key=True)
