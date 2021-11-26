@@ -1,0 +1,1 @@
+from .amigosCrudView import *
