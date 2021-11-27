@@ -1,0 +1,5 @@
+com\ms2viajes\viajes_ms\repositories\ViajeRepository.class
+com\ms2viajes\viajes_ms\models\Conductor.class
+com\ms2viajes\viajes_ms\models\Viaje.class
+com\ms2viajes\viajes_ms\ViajesMsApplication.class
+com\ms2viajes\viajes_ms\repositories\ConductorRepository.class
