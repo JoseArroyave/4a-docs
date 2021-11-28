@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-j=1k0x6tmqu*0eicmorbcmc67%bxu)cct3syjlsl40x2fa6x7b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mspycontainer.herokuapp.com']
 
 
 # Application definition
@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'amigosApp',
     'authApp',
+    'django_filters',
 ]
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),

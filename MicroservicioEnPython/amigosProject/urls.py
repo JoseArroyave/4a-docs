@@ -15,7 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from amigosApp.views import *
+from authApp.views import *
+from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', TokenObtainPairView.as_view()),
+    path('refresh/', TokenRefreshView.as_view()),
+    path('verifytoken/', VerifyTokenView.as_view()),
+    path('user/', UserCreateView.as_view()), # Para crear usuarios
+    path('user/lista/', UserListAPIView.as_view()),
+    path('user/lista/<int:pk>/', user_detail_view), # Para consultar usuarios
+    # path('amigos/', AmigosCreateView.as_view()),
+    path('amigos/',AmigosFilterList.as_view()),
+    path('amigos/lista/',AmigosListAPIView.as_view()),
+    path('amigos/lista/<int:pk>/',amigos_detail_view),
 ]
