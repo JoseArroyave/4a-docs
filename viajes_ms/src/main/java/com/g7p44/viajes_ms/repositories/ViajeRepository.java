@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ViajeRepository extends MongoRepository<Viaje, String> {
 
-    List <Viaje> findByCliente(String cliente);
+    
     List <Viaje> findByConductor(String conductor);
+    
 }

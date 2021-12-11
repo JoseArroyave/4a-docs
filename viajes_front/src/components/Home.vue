@@ -3,23 +3,16 @@
   <div class="information">
     <h1>
       ¡Bienvenido
-      <span>{{ userDetailById.name }}</span
+      <span>{{ usuario }}</span
       >!
     </h1>
 
-    <div class="details">
-      <h3>Su información es la siguiente</h3>
-
+    
       <h2>
-        Nombre de usuario:
-        <span>{{ userDetailById.username }}</span>
+        Puedes pedir tus viajes seguros con nosotros.
       </h2>
 
-      <h2>
-        Correo electrónico:
-        <span>{{ userDetailById.email }}</span>
-      </h2>
-    </div>
+    <button v-on:click="loadViaje()"> Pedir Viaje </button>
   </div>
   
 </template>
@@ -35,6 +28,7 @@ export default {
   data: function () {
     return {
       userId: jwt_decode(localStorage.getItem("token_refresh")).user_id,
+      usuario: localStorage.getItem("username"),
       userDetailById: {
         username: "",
         name: "",
@@ -42,25 +36,17 @@ export default {
       },
     };
   },
+  
+
 
   apollo: {
-    userDetailById: {
-      query: gql`
-        query ($userId: Int!) {
-          userDetailById(userId: $userId) {
-            username
-            name
-            email
-          }
-        }
-      `,
-      variables() {
-        return {
-          userId: this.userId,
-        };
-      }
+
+  },
+ methods: {
+      loadViaje: function(){
+      this.$router.push({ name: "viaje" });
     },
-  }
+},
 };
 </script>
 
@@ -87,16 +73,41 @@ export default {
 .information h2 {
   font-size: 40px;
   color: #283747;
+  text-align: center;
 }
 
 .information span {
-  color: crimson;
+  color: rgb(60, 173, 107);
   font-weight: bold;
 }
+.information button {
+  
+  height: 40px;
 
+  color: #e5e7e9;
+  background: #31573a;
+  border: 1px solid #e5e7e9;
+
+  border-radius: 5px;
+  padding: 10px 25px;
+  margin: 5px 0;
+}
+
+.information button:hover {
+  
+  height: 40px;
+
+  color: #b3d3c3;
+  background: #617966;
+  border: 1px solid #203b57;
+
+  border-radius: 5px;
+  padding: 10px 25px;
+  margin: 5px 0;
+}
 .details h3 {
   font-size: 35px;
-  color: #283747;
+  color: #284730;
   text-align: center;
 }
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Date;
 
 @RestController
 public class ViajeController {
@@ -24,10 +25,13 @@ public class ViajeController {
     //Crea un viaje, actualiza el conductor a No disponible
     @PostMapping("/viaje")
     Viaje nuevoViaje (@RequestBody Viaje viaje){
+        viaje.setFechaViaje(new Date());
+        viaje.setActivo(true);
         Viaje viajeGuardado = viajeRepository.save(viaje);
         Conductor conductorElegido = conductorRepository.findById(viajeGuardado.getConductor()).orElse(null);
         conductorElegido.setDisponible(false);
         conductorElegido.setBalance(conductorElegido.getBalance()+viajeGuardado.getPrecio());
+        Conductor conductorg = conductorRepository.save(conductorElegido);
         return viajeGuardado;
     }
 
@@ -42,6 +46,15 @@ public class ViajeController {
         List<Viaje> viajes=viajeRepository.findByConductor(cedula);
         return  viajes;
     }
+        //Consulta los viajes por cliente enviando el username ddel cliente en la URL
+    @GetMapping("/viajeslist")
+    List <Viaje> clienteViaje(){
+        
+ 
+        return  viajeRepository.findAll();
+        
+    }
+    
     //Cuando el viaje ha terminado, se cambia su estado a activo false y el estado del conductor a disponible true
     @PutMapping("viaje/terminado/{id}")
     Viaje viajeTerminado (@PathVariable String id){

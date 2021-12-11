@@ -25,6 +25,7 @@ const viajeTypeDefs = gql`
     
    type Query {
         getByConductor(conductor: String!): [Viaje]
+        getByCliente: [Viaje]
     }
    extend type Mutation {
         createViaje(viaje: ViajeInput!): Viaje

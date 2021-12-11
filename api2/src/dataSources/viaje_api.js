@@ -12,6 +12,9 @@ class ViajeAPI extends RESTDataSource {
     async getByConductor(conductor) {
         return await this.get(`/viajes/${conductor}`);
     }
+    async getByCliente() {
+        return await this.get('/viajeslist');
+    }
     async terminarViaje(id) {
         return await this.put(`/viaje/terminado/${id}`);
     }

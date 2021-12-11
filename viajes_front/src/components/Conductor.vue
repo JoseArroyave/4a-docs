@@ -2,19 +2,22 @@
 
     <div class="signUp_user">
         <div class="container_signUp_user">
-            <h2>Registrarse</h2>
+            <h2>Registrarse como conductor</h2>
 
-            <form v-on:submit.prevent="processSignUp" >
-                <input type="text" v-model="user.username" placeholder="Usuario">
+            <form v-on:submit.prevent="crearConductor" >
+                <input type="text" v-model="createConductor.cedula" placeholder="Cedula o DI">
                 <br>
                 
-                <input type="password" v-model="user.password" placeholder="Contraseña">
+                <input type="text" v-model="createConductor.nombres" placeholder="Nombres">
                 <br>
-                
-                <input type="text" v-model="user.name" placeholder="Nombre">
+                                
+                <input type="text" v-model="createConductor.apellidos" placeholder="Apellidos">
                 <br>
 
-                <input type="email" v-model="user.email" placeholder="Correo">
+                <input type="text" v-model="createConductor.telefono" placeholder="Telefono">
+                <br>
+
+                <input type="text" v-model="createConductor.tipoCarro" placeholder="Descripción de su carro y placa">
                 <br>
 
                 <button type="submit">Registrarse</button>
@@ -30,44 +33,48 @@
 import gql from "graphql-tag";
 
 export default {
-    name: "SignUp",
+    name: "Conductor",
 
     data: function() {
         return {
-        user: {
-            username: "",
-            password: "",
-            name: "",
-            email: "",
+        createConductor: {
+                cedula:"",
+                nombres:"",
+                apellidos:"",
+                telefono:"",
+                tipoCarro:"",
+                disponible: true,
+                balance:0
             
         },
         };
     },
 
   methods: {
-    processSignUp: async function() {
+    crearConductor: async function() {
       await this.$apollo
         .mutate({
           mutation: gql`
-            mutation($userInput: SignUpInput!) {
-              signUpUser(userInput: $userInput) {
-                refresh
-                access
+            mutation CreateConductor($conductor: ConductorInput!) {
+              createConductor(conductor: $conductor) {
+                cedula
+                nombres
+                apellidos
+                telefono
+                tipoCarro
+                disponible
+                balance
               }
             }
           `,
           variables: {
-            userInput: this.user,
+            conductor: this.createConductor,
           },
         })
         .then((result) => {
-          let dataLogIn = {
-            username: this.user.username,
-            token_access: result.data.signUpUser.access,
-            token_refresh: result.data.signUpUser.refresh,
-          };
-
-          this.$emit("completedSignUp", dataLogIn);
+          alert("Registro de conductor exitoso.");
+          console.log(result);
+          this.$emit("logIn");
         })
         .catch((error) => {
           alert("ERROR: Fallo en el registro.");

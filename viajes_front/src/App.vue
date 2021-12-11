@@ -7,12 +7,13 @@
       <h1> Viajes y Amigos </h1>
       <nav>
         <button v-if="is_auth" v-on:click="loadHome"> Inicio </button>
-        <button v-if="is_auth" v-on:click="loadAccount"> Cuenta </button>
-        <button v-if="is_auth" v-on:click="loadTransaction"> Transacción </button>
-        <button v-if="is_auth" v-on:click="logOut"> Cerrar Sesión </button>
+        <button v-if="is_auth" v-on:click="loadPerfil"> Mi perfil </button>
+        <button v-if="is_auth" v-on:click="loadViaje"> Viaje </button>
+        <button v-if="is_auth" v-on:click="logOut"> Log out </button>
         <button v-if="!is_auth" v-on:click="loadLogIn" > Iniciar Sesión </button>
         <button v-if="!is_auth" v-on:click="loadSignUp" > Registrarse </button>
-        <button v-if="!is_auth" v-on:click="loadSignUp" > Soy conductor </button>
+        <button v-if="!is_auth" v-on:click="loadConductor" > Soy conductor </button>
+        
       </nav>
     </div>
     
@@ -22,13 +23,14 @@
         v-on:completedLogIn="completedLogIn"
         v-on:completedSignUp="completedSignUp"
         v-on:logOut="logOut"
+        
       >
       </router-view>
     </div>
     
 
     <div class="footer">
-      <h2>Misión TIC 2022</h2>
+      <h2>G7 P44 - Misión TIC 2022</h2>
     </div>
 
   </div>
@@ -58,7 +60,12 @@ export default {
     loadSignUp: function(){
       this.$router.push({name: "signUp"})
     },
+    
+    loadConductor: function(){
+      this.$router.push({ name: "conductor" });
+    },
 
+ 
     completedLogIn: function(data) {
 			localStorage.setItem("username", data.username);
 			localStorage.setItem("token_access", data.token_access);
@@ -76,12 +83,12 @@ export default {
       this.$router.push({ name: "home" });
     },
 
-    loadAccount: function () {
-			this.$router.push({ name: "account" });
+    loadPerfil: function () {
+			this.$router.push({ name: "perfil" });
 		},
 
-    loadTransaction: function(){
-      this.$router.push({ name: "transaction" });
+    loadViaje: function(){
+      this.$router.push({ name: "viaje" });
     },
 
     logOut: function () {
@@ -107,7 +114,7 @@ export default {
     height: 10vh; 
     min-height: 100px;
 
-    background-color: #283747 ;
+    background-color: #21423a ;
     color:#E5E7E9  ;
 
     display: flex;
@@ -133,15 +140,15 @@ export default {
 
   .header nav button{
     color: #E5E7E9;
-    background: #283747;
-    border: 1px solid #E5E7E9;
+    background: #21423a;
+    
 
     border-radius: 5px;
     padding: 10px 20px;
   }
 
   .header nav button:hover{
-    color: #283747;
+    color: #21423a;
     background: #E5E7E9;
     border: 1px solid #E5E7E9;
   }
@@ -163,7 +170,7 @@ export default {
     height: 10vh;
     min-height: 100px; 
 
-    background-color: #283747;
+    background-color: #21423a;
     color: #E5E7E9;
 
   }

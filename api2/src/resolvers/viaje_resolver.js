@@ -4,6 +4,11 @@ const viajeResolver = {
             return await dataSources.viajeAPI.getByConductor(conductor)
 
         },
+        getByCliente: async (_, { }, { dataSources, }) => {
+            return await dataSources.viajeAPI.getByCliente()
+
+        },
+
     },
     Mutation: {
             createViaje: (_, { viaje }, { dataSources, }) => {
